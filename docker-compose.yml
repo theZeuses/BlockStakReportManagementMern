@@ -1,0 +1,35 @@
+services:
+  blockstak-dev:
+    container_name: blockstak-dev
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app/
+      - /app/node_modules
+    ports:
+      - 8001:8001
+
+  blockstak-dev-db:
+    image: mongo:6-jammy
+    container_name: blockstak-dev-db
+    restart: always
+    volumes: 
+      - db:/data/db
+
+  blockstak-redis-service:
+    container_name: blockstak-redis-service
+    image: redis
+    environment:
+      - REDIS_PASSWORD=password
+
+  maildev:
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      
+volumes:
+  db:
+    driver: local
