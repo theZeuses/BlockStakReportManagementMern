@@ -8,7 +8,7 @@ import { Request, Response } from "express";
 export class AdminGuard implements IGuard {
     async canProceed(req: Request, res: Response) {
         if(!req.user) throw new UnauthorizedException();
-        console.log(req.user)
+        
         if(req.user.role != Role.ADMIN) throw new ForbiddenException();
 
         return true;

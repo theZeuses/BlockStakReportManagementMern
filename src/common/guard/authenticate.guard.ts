@@ -1,6 +1,5 @@
 import { Injectable } from "@core/application";
 import { IGuard } from "@core/application/interface";
-import { Exception } from "@core/consts";
 import { UnauthorizedException } from "@core/exceptions";
 import { JWTService } from "@modules/auth/services";
 import { Request, Response } from "express";
